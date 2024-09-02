@@ -33,42 +33,63 @@ local keyDownTap = hs.eventtap.new({hs.eventtap.event.types.keyDown}, function(e
             return true
         end
         if event:getKeyCode() == hs.keycodes.map.r then
+            local cursor = hs.application.find("Cursor")
             local vscode = hs.application.find("Code")
-            if vscode then
+            
+            if cursor or vscode then
+                local codeEditor = vscode or cursor
                 hs.alert.show("Command + R", 0.5)
                 previousApp = hs.application.frontmostApplication()
-                vscode:activate()
+                codeEditor:activate()
                 hs.eventtap.keyStroke({"shift", "cmd"}, "F5")
-                if previousApp ~= vscode then
+                if previousApp ~= codeEditor then
                     hs.timer.doAfter(0.3, function()
                         previousApp:activate()
                         previousApp = nil
                     end)
                 end
             else
-                hs.alert.show("Visual Studio Code is not running")
+                hs.alert.show("Cursor or Visual Studio Code is not running")
             end
             return true
         end
         if event:getKeyCode() == hs.keycodes.map.n then
             local vscode = hs.application.find("Code")
-            if vscode then
+            local cursor = hs.application.find("Cursor")
+            if vscode or cursor then
+                local codeEditor = vscode or cursor
                 hs.alert.show("Command + N", 0.5)
-                vscode:activate()
+                codeEditor:activate()
                 hs.eventtap.keyStroke({"cmd"}, "N")
             else
-                hs.alert.show("Visual Studio Code is not running")
+                hs.alert.show("Cursor or Visual Studio Code is not running")
+            end
+            return true
+        end
+        if event:getKeyCode() == hs.keycodes.map.p then
+            local vscode = hs.application.find("Code")
+            local cursor = hs.application.find("Cursor")
+            if vscode or cursor then
+                local codeEditor = vscode or cursor
+                hs.alert.show("Command + P", 0.5)
+                codeEditor:activate()
+                hs.eventtap.keyStroke({"cmd"}, "P")
+            else
+                hs.alert.show("Cursor or Visual Studio Code is not running")
             end
             return true
         end
         if event:getKeyCode() == hs.keycodes.map.g then
             local vscode = hs.application.find("Code")
-            if vscode then
+            local cursor = hs.application.find("Cursor")
+            
+            if vscode or cursor then
+                local codeEditor = vscode or cursor
                 hs.alert.show("Command + G", 0.5)
-                vscode:activate()
+                codeEditor:activate()
                 hs.eventtap.keyStroke({"option"}, "G")
             else
-                hs.alert.show("Visual Studio Code is not running")
+                hs.alert.show("Cursor or Visual Studio Code is not running")
             end
             return true
         end
