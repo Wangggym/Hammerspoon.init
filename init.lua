@@ -56,6 +56,7 @@ local keyDownTap = hs.eventtap.new({hs.eventtap.event.types.keyDown}, function(e
         if event:getKeyCode() == hs.keycodes.map.n then
             local vscode = hs.application.find("Code")
             local cursor = hs.application.find("Cursor")
+            
             if vscode or cursor then
                 local codeEditor = vscode or cursor
                 hs.alert.show("Command + N", 0.5)
@@ -69,6 +70,7 @@ local keyDownTap = hs.eventtap.new({hs.eventtap.event.types.keyDown}, function(e
         if event:getKeyCode() == hs.keycodes.map.p then
             local vscode = hs.application.find("Code")
             local cursor = hs.application.find("Cursor")
+
             if vscode or cursor then
                 local codeEditor = vscode or cursor
                 hs.alert.show("Command + P", 0.5)
